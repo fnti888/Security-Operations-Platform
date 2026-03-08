@@ -1,0 +1,512 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply antialiased;
+  }
+
+  :root {
+    --cyber-bg: #000000;
+    --cyber-primary: #00ff00;
+    --cyber-secondary: #00aa00;
+    --cyber-accent: #00ff00;
+    --cyber-border: rgba(0, 255, 0, 0.3);
+    --cyber-shadow: rgba(34, 197, 94, 0.5);
+  }
+
+  [data-theme="accessible"] {
+    --cyber-bg: #000000;
+    --cyber-primary: #00ff41;
+    --cyber-secondary: #00cc33;
+    --cyber-accent: #00ff41;
+    --cyber-border: rgba(0, 255, 65, 0.5);
+    --cyber-shadow: rgba(0, 255, 65, 0.7);
+  }
+
+  [data-theme="midnight"] {
+    --cyber-bg: #0a0e27;
+    --cyber-primary: #00d4ff;
+    --cyber-secondary: #0099cc;
+    --cyber-accent: #00d4ff;
+    --cyber-border: rgba(0, 212, 255, 0.3);
+    --cyber-shadow: rgba(0, 212, 255, 0.5);
+  }
+
+  [data-theme="matrix"] {
+    --cyber-bg: #000000;
+    --cyber-primary: #00ffff;
+    --cyber-secondary: #00cccc;
+    --cyber-accent: #00ffff;
+    --cyber-border: rgba(0, 255, 255, 0.3);
+    --cyber-shadow: rgba(0, 255, 255, 0.5);
+  }
+
+  body {
+    background: var(--cyber-bg);
+    color: var(--cyber-primary);
+  }
+
+  [data-reduce-motion="true"] * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.8);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes scan-line {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes terminal-cursor {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  @keyframes matrix-rain {
+    0% {
+      transform: translateY(-100%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+
+  @keyframes flicker {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes pop-out {
+    0%, 100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));
+    }
+    50% {
+      transform: scale(1.3);
+      filter: drop-shadow(0 0 30px rgba(34, 197, 94, 0.9));
+    }
+  }
+
+  @keyframes fingerprint-glow {
+    0%, 100% {
+      filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.6))
+              drop-shadow(0 0 40px rgba(0, 255, 0, 0.4))
+              brightness(1);
+    }
+    33% {
+      filter: drop-shadow(0 0 40px rgba(0, 255, 0, 0.9))
+              drop-shadow(0 0 80px rgba(0, 255, 0, 0.6))
+              brightness(1.2);
+    }
+    66% {
+      filter: drop-shadow(0 0 30px rgba(0, 255, 0, 0.7))
+              drop-shadow(0 0 60px rgba(0, 255, 0, 0.5))
+              brightness(1.1);
+    }
+  }
+
+  @keyframes fingerprint-scan {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.05) rotate(2deg);
+    }
+    50% {
+      transform: scale(1.1) rotate(0deg);
+    }
+    75% {
+      transform: scale(1.05) rotate(-2deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes biometric-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes digital-flicker {
+    0%, 100% {
+      text-shadow: 0 0 5px currentColor;
+      filter: brightness(1);
+    }
+    50% {
+      text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+      filter: brightness(1.2);
+    }
+  }
+
+  @keyframes clock-tick {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-2px);
+      opacity: 0.8;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-blink {
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  .animate-scan {
+    animation: scan-line 8s linear infinite;
+  }
+
+  .animate-glitch {
+    animation: glitch 0.3s infinite;
+  }
+
+  .animate-flicker {
+    animation: flicker 0.15s infinite;
+  }
+
+  .animate-pop-out {
+    animation: pop-out 3s ease-in-out infinite;
+  }
+
+  .animate-fingerprint {
+    animation:
+      fingerprint-glow 3s ease-in-out infinite,
+      fingerprint-scan 4s ease-in-out infinite,
+      biometric-pulse 2s ease-in-out infinite;
+  }
+
+  .terminal-cursor::after {
+    content: '▋';
+    animation: terminal-cursor 1s step-end infinite;
+    color: #0f0;
+  }
+
+  .forensic-grid {
+    background-image:
+      linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    position: relative;
+  }
+
+  .forensic-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(34, 197, 94, 0.02) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    animation: scan-line 8s linear infinite;
+  }
+
+  .terminal-shadow {
+    box-shadow:
+      0 0 20px rgba(34, 197, 94, 0.2),
+      inset 0 0 40px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .hacker-border {
+    border: 2px solid rgba(34, 197, 94, 0.5);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.3),
+                inset 0 0 10px rgba(34, 197, 94, 0.1);
+  }
+
+  .hex-display {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 5px rgba(34, 197, 94, 0.8);
+    color: #0f0;
+  }
+
+  .terminal-text {
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+  }
+
+  .neon-green {
+    color: #0f0;
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.8),
+                 0 0 20px rgba(34, 197, 94, 0.6);
+  }
+
+  .screen-overlay {
+    position: relative;
+  }
+
+  .screen-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .cyber-glow {
+    text-shadow: 0 0 10px var(--cyber-shadow),
+                 0 0 20px var(--cyber-shadow),
+                 0 0 30px var(--cyber-shadow);
+  }
+
+  .cyber-card {
+    background: var(--cyber-bg);
+    border: 2px solid var(--cyber-border);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .cyber-card:hover {
+    border-color: var(--cyber-primary);
+    box-shadow: 0 0 20px var(--cyber-shadow);
+    transform: translateY(-2px);
+  }
+
+  .cyber-button-primary {
+    background: transparent;
+    border: 2px solid var(--cyber-primary);
+    color: var(--cyber-primary);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+
+  .cyber-button-primary:hover {
+    background: var(--cyber-primary);
+    color: var(--cyber-bg);
+    box-shadow: 0 0 20px var(--cyber-shadow);
+  }
+
+  .cyber-button-primary:focus-visible {
+    outline: 2px solid var(--cyber-primary);
+    outline-offset: 2px;
+  }
+
+  .cyber-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: 2px solid var(--cyber-border);
+    border-radius: 4px;
+    color: var(--cyber-primary);
+    transition: all 0.3s ease;
+  }
+
+  .cyber-icon-button:hover {
+    border-color: var(--cyber-primary);
+    background: var(--cyber-primary);
+    color: var(--cyber-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--cyber-shadow);
+  }
+
+  .cyber-icon-button:focus-visible {
+    outline: 2px solid var(--cyber-primary);
+    outline-offset: 2px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.4);
+  border: 1px solid rgba(34, 197, 94, 0.6);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.6);
+}
+
+::selection {
+  background: rgba(34, 197, 94, 0.3);
+  color: #0f0;
+}
+
+@media print {
+  body {
+    background: white !important;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    margin: 0.5in;
+    size: letter;
+  }
+
+  .break-inside-avoid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+
+  .shadow-xl,
+  .shadow-lg {
+    box-shadow: none !important;
+  }
+
+  .rounded-lg {
+    border-radius: 0 !important;
+  }
+}
