@@ -535,7 +535,7 @@ A: The compliance-reporter function generates reports for NIST, ISO27001, PCI-DS
 
 Built by Frank NTI
 
-**GitHub**: [fnti888](https://github.com/fnti888)
+**GitHub**: https://www.linkedin.com/in/frank-nti-/
 
 ## Acknowledgments
 
